@@ -36,6 +36,43 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
+app.get("/movie/year", (req, res, next) => {
+  Movie.aggregate([
+    {$group : { _id : "$year", AvgRank: { $avg: "$rank" }}}
+  ]).then(documents => {
+    res.status(200).json({
+      message: 'succes',
+      response: documents
+    });
+  });
+});
+
+app.get("/movie/bestmovies", (req, res, next) => {
+  Movie.aggregate([{
+    $match: { $and: [
+      { year: { $gt: 1980, $lt: 2008 }},
+      { rank: { $gte: 7 }}
+    ]}}, { $sort : { rank : -1 }}
+  ]).then(documents => {
+    res.status(200).json({
+      message: 'succes',
+      response: documents
+    });
+  });
+});
+
+app.get("/movie/year/genres", (req, res, next) => {
+  Movie.aggregate([
+    {$group : {_id:{year:"$year",genres:"$genres"}, Avg:{$avg:"$rank"}}},
+    {$sort:{"_id.year":1}}
+  ]).then(documents => {
+    res.status(200).json({
+      message: 'succes',
+      response: documents
+    });
+  });
+});
+
 app.listen(8000, () => {
   console.log('Example app listening on port 8000!')
 });
