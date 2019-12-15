@@ -42,7 +42,7 @@ app.get("/movie/year", (req, res, next) => {
   ]).then(documents => {
     res.status(200).json({
       message: 'succes',
-      response: documents
+      data: documents
     });
   });
 });
@@ -56,7 +56,7 @@ app.get("/movie/bestmovies", (req, res, next) => {
   ]).then(documents => {
     res.status(200).json({
       message: 'succes',
-      response: documents
+      data: documents
     });
   });
 });
@@ -68,7 +68,7 @@ app.get("/movie/year/genres", (req, res, next) => {
   ]).then(documents => {
     res.status(200).json({
       message: 'succes',
-      response: documents
+      data: documents
     });
   });
 });
