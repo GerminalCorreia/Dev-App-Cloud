@@ -1,4 +1,20 @@
 const express = require('express')
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const Movie = require('./movie');
+
+mongoose
+  .connect(
+    'mongodb://localhost:27017/IMDB', { useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
+
 const app = express();
 
 app.use(bodyParser.json());
