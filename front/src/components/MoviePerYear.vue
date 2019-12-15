@@ -1,27 +1,28 @@
 <template>
-  <v-layout row pa-3>
+  <v-layout row pa-3 id="layout">
     <h1>Average movies grade per year</h1>
-    <v-simple-table
-    id="table"
-      height="500px"
-      :dense="false"
-      :fixed-header="true"
-    >
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">Year</th>
-            <th class="text-left">Average Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in grades" :key="item.name">
-            <td>{{ item._id }}</td>
-            <td>{{ item.AvgRank }}</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
+    <v-flex xs12>
+      <v-simple-table
+        height="500px"
+        :dense="false"
+        :fixed-header="true"
+      >
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <th class="text-left">Year</th>
+              <th class="text-left">Average Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in grades" :key="item.name">
+              <td>{{ item._id }}</td>
+              <td>{{ item.AvgRank }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -50,8 +51,9 @@ export default {
 </script>
 
 <style>
-#table {
+#layout {
   margin-left: 20%;
-  margin-right: 20%
+  margin-right: 20%;
+  margin-top: 0%;
 }
 </style>
